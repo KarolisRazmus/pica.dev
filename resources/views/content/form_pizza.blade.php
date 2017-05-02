@@ -8,7 +8,7 @@
         <h4 style="color:red">Pasirinkite tris ingredientus!</h4>
     @endif
     @if(isset($name))
-        <div>{{$name}} sukurta sėkmingai!</div>
+        <h4 style="color:green">{{$name}} sukurta sėkmingai!</h4>
     @endif
 
 
