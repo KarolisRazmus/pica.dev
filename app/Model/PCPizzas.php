@@ -15,8 +15,19 @@ class PCPizzas extends PCCoreModel
         return $this->belongsToMany(PCIngridients::class, 'pc_pizzas_ingridients_connections', 'pizzas_id', 'ingridients_id');
     }
 
-    public function logins (  )
+    public function ingridientsConnections (  )
     {
-        return $this->hasOne(CRMProjectLogins::class, 'id', 'logins_id')->with(['type']);
+        return $this->hasMany(PCPizzasIngridientsConnections::class, 'pizzas_id', 'id')
+            ->with(['ingridient']);
+    }
+
+    public function ground (  )
+    {
+        return $this->hasOne(PCGrounds::class, 'id', 'grounds_id');
+    }
+
+    public function cheese (  )
+    {
+        return $this->hasOne(PCCheeses::class, 'id', 'cheeses_id');
     }
 }

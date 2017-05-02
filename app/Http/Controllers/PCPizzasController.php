@@ -17,7 +17,11 @@ class PCPizzasController extends Controller {
 	 */
 	public function index()
 	{
-		return "kuku";
+        //dd($configuration['all_pizzas'] = PCPizzas::with(['ingridientsConnections'])->with(['ground'])->with(['cheese'])->get()->toArray());
+
+        $configuration['all_pizzas'] = PCPizzas::with(['ingridientsConnections'])->with(['ground'])->with(['cheese'])->get()->toArray();
+
+         return view('content.list_pizzas', $configuration);
 	}
 
 	/**

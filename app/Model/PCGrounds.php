@@ -9,4 +9,5 @@ class PCGrounds extends PCCoreModel
     protected $table = 'pc_grounds';
 
     protected $fillable = ['name', 'calories'];
+
 }
