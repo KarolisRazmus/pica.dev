@@ -23,10 +23,10 @@ class PCPizzasController extends Controller {
 	 */
 	public function form()
 	{
-		//
+		//$configuration['']=PC
 
 
-
+        return view('content.form_pizza');
 	}
 
 	/**

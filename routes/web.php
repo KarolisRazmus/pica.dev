@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'pizzas'], function (){
+
+    Route::get('/', [
+       'uses' => 'PCPizzasController@index',
+    ]);
+
+    Route::get('/form/', [
+        'uses' => 'PCPizzasController@form',
+    ]);
+
+    Route::post('/form/', [
+        'as' => 'create.pizza',
+        'uses' => 'PCPizzasController@addPizza'
+    ]);
+});
