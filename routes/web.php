@@ -30,3 +30,10 @@ Route::group(['prefix' => 'pizzas'], function (){
         'uses' => 'PCPizzasController@addPizza'
     ]);
 });
+
+Route::group(['prefix' => 'ingridients'], function (){
+
+    Route::get('/', [
+        'uses' => 'PCIngridientsController@index',
+    ]);
+});

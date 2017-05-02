@@ -4,6 +4,9 @@
 
 @section('content')
 
+    @if(sizeOf($data['ingridients']) != 3)
+        <h4 style="color:red">Pasirinkite tris ingredientus!</h4>
+    @endif
     @if(isset($name))
         <div>{{$name}} sukurta sėkmingai!</div>
     @endif
@@ -14,22 +17,20 @@
     {!! Form::label('name', 'Name') !!}
     {!! Form::text('name')!!}<br/>
 
-    {!! Form::label('email', 'Email') !!}
-    {!! Form::text('email') !!}<br/>
+    {!! Form::label('ground', 'Ground') !!}
+    {{Form::select('ground',$grounds)}}<br/>
 
-    {!! Form::label('phone', 'Phone') !!}
-    {!! Form::text('phone') !!}<br/>
-
-    {{Form::select('city',$cities)}}<br/>
+    {!! Form::label('cheese', 'Cheese') !!}
+    {{Form::select('cheese',$cheeses)}}<br/>
 
     <ul>
-        @foreach($hobbies as $key => $hobby)
-            <li>{{Form::label($hobby, $hobby)}}
-                {{Form::checkbox('hobbies[]', $key)}}</li>
+        @foreach($ingridients as $key => $ingridient)
+            <li>{{Form::label($ingridient, $ingridient)}}
+                {{Form::checkbox('ingridients[]', $key)}}</li>
         @endforeach
     </ul>
 
-    {!! Form::submit('Add Person!') !!}
+    {!! Form::submit('Add Pizza!') !!}
 
     {!! Form::close() !!}
 
