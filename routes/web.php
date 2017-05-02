@@ -29,6 +29,11 @@ Route::group(['prefix' => 'pizzas'], function (){
         'as' => 'create.pizza',
         'uses' => 'PCPizzasController@addPizza'
     ]);
+//
+//    Route::post('/form/', [
+//        'as' => 'create.cheese',
+//        'uses' => 'PCPizzasController@addCheese'
+//    ]);
 });
 
 Route::group(['prefix' => 'ingridients'], function (){

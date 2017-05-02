@@ -40,20 +40,4 @@
 
 
 
-
-    {{--@if(sizeOf($data['ingridients']) != 3)--}}
-        {{--<h4 style="color:red">Pasirinkite tris ingredientus!</h4>--}}
-    {{--@endif--}}
-    {{--@if(isset($name))--}}
-        {{--<h4 style="color:green">{{$name}} sukurta sėkmingai!</h4>--}}
-    {{--@endif--}}
-
-
-    {{--<ul>--}}
-        {{--@foreach($ingridients as $key => $ingridient)--}}
-            {{--<li>{{Form::label($ingridient, $ingridient)}}--}}
-                {{--{{Form::checkbox('ingridients[]', $key)}}</li>--}}
-        {{--@endforeach--}}
-    {{--</ul>--}}
-
 @endsection

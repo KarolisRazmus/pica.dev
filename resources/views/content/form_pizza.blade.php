@@ -21,10 +21,11 @@
     {{Form::select('ground',$grounds)}}<br/>
 
     {!! Form::label('cheese', 'Cheese') !!}
-    {{Form::select('cheese',$cheeses)}}<br/>
+    {{Form::select('cheese',$cheeses)}}
+
 
     <ul>
-        @foreach($ingridients as $key => $ingridient)
+    @foreach($ingridients as $key => $ingridient)
             <li>{{Form::label($ingridient, $ingridient)}}
                 {{Form::checkbox('ingridients[]', $key)}}</li>
         @endforeach
@@ -33,5 +34,18 @@
     {!! Form::submit('Add Pizza!') !!}
 
     {!! Form::close() !!}
+
+
+    {{--{!! Form::open(['url' => route('create.cheese')]) !!}--}}
+
+    {{--{!! Form::label('addcheese', ' Add your favorite cheese to the list!  Name') !!}--}}
+    {{--{!! Form::text('addcheese')!!}--}}
+
+    {{--{!! Form::label('calories', 'Calories') !!}--}}
+    {{--{!! Form::text('calories')!!}--}}
+
+    {{--{!! Form::submit('Add Cheese!') !!}--}}
+    {{--{!! Form::close() !!}--}}
+
 
 @endsection
