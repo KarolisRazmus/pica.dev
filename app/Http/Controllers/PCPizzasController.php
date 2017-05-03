@@ -52,19 +52,36 @@ class PCPizzasController extends Controller {
 	public function addPizza()
 	{
         $data = request()->all();
+        
+        if (isset($data['name']))
+        {
+            $configuration['name']=$data['name'];
+        }
 
 //        dd($data);
 
-        if(sizeOf($data['ingridients']) != 3) {
-            $configuration['grounds']=PCGrounds::all()->pluck('name', 'id')->toArray();
-            $configuration['cheeses']=PCCheeses::all()->pluck('name', 'id')->toArray();
-            $configuration['ingridients']=PCIngridients::all()->pluck('name', 'id')->toArray();
-            $configuration['data']=['ingridients' => ['1','2','3','4']];
+        $configuration['grounds']=PCGrounds::all()->pluck('name', 'id')->toArray();
+        $configuration['cheeses']=PCCheeses::all()->pluck('name', 'id')->toArray();
+        $configuration['ingridients']=PCIngridients::all()->pluck('name', 'id')->toArray();
+
+        if (!isset($data['name']))
+        {
+            $configuration['noname']=$data['name'];
+            return view('content.form_pizza',  $configuration);
+        }
+
+        if(sizeOf($data['ingridients']) > 3)
+        {
+            $configuration['data']= $data;
 
             return view('content.form_pizza', $configuration);
         }
 
+
+
+
         $ground_calories = array_sum(DB::table('pc_grounds')->where('id', '=', $data['ground'])->select('calories')->get()->pluck('calories')->toArray());
+
         $cheeses_calories = array_sum(DB::table('pc_cheeses')->where('id', '=', $data['cheese'])->select('calories')->get()->pluck('calories')->toArray());
 
         $ingridients_calories = 0;
@@ -77,6 +94,7 @@ class PCPizzasController extends Controller {
         $pizzas_calories = $ground_calories + $cheeses_calories + $ingridients_calories;
 
 
+
         $record = PCPizzas::create ([
             'name' => $data['name'],
             'grounds_id' => $data['ground'],
@@ -86,13 +104,9 @@ class PCPizzasController extends Controller {
 
         $record->connection()->sync($data['ingridients']);
 
-        $record['grounds']=PCGrounds::all()->pluck('name', 'id')->toArray();
-        $record['cheeses']=PCCheeses::all()->pluck('name', 'id')->toArray();
-        $record['ingridients']=PCIngridients::all()->pluck('name', 'id')->toArray();
-        $record['data']=['ingridients' => ['1','2','3']];
+        $configuration['data']=['ingridients' => ['1','2','3']];
 
-        return view('content.form_pizza', $record);
+        return view('content.form_pizza',  $configuration);
 	}
-
 }
 

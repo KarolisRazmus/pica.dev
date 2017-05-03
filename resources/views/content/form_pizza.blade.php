@@ -4,32 +4,40 @@
 
 @section('content')
 
-    @if(sizeOf($data['ingridients']) != 3)
-        <h4 style="color:red">Pasirinkite tris ingredientus!</h4>
+    @if(sizeOf($data['ingridients']) > 3)
+        <h4 style="color:red">Pasirinkite ne daugiau nei tris ingredientus!</h4>
     @endif
+
     @if(isset($name))
         <h4 style="color:green">{{$name}} sukurta sėkmingai!</h4>
     @endif
 
+    {{--@if(!$name === null)--}}
+        {{--<h4 style="color:red">EEEE.. pamirsai telefona!</h4>--}}
+    {{--@endif--}}
+
+
 
     {!! Form::open(['url' => route('create.pizza')]) !!}
 
-    {!! Form::label('name', 'Name') !!}
+    {!! Form::label('name', 'Write your phone number') !!}
     {!! Form::text('name')!!}<br/>
 
     {!! Form::label('ground', 'Ground') !!}
     {{Form::select('ground',$grounds)}}<br/>
 
     {!! Form::label('cheese', 'Cheese') !!}
-    {{Form::select('cheese',$cheeses)}}
+    {{Form::select('cheese',$cheeses)}}<br/>
 
 
-    <ul>
-    @foreach($ingridients as $key => $ingridient)
-            <li>{{Form::label($ingridient, $ingridient)}}
-                {{Form::checkbox('ingridients[]', $key)}}</li>
+
+    @foreach($ingridients as $key => $ingridient)<br/>
+
+                {{Form::checkbox('ingridients[]', $key)}}
+                {{Form::label($ingridient, $ingridient)}}
+
         @endforeach
-    </ul>
+    <br/><br/>
 
     {!! Form::submit('Add Pizza!') !!}
 
