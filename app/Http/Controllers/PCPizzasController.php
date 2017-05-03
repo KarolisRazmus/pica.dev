@@ -94,22 +94,5 @@ class PCPizzasController extends Controller {
         return view('content.form_pizza', $record);
 	}
 
-    public function addCheese (  )
-    {
-//        $addcheese = request()->all();
-//
-//        if(sizeOf($addcheese)){
-//            dd($addcheese);
-//        } else {echo "kuku";}
-//
-//        $configuration['grounds']=PCGrounds::all()->pluck('name', 'id')->toArray();
-//        $configuration['cheeses']=PCCheeses::all()->pluck('name', 'id')->toArray();
-//        $configuration['ingridients']=PCIngridients::all()->pluck('name', 'id')->toArray();
-//        $configuration['data']=['ingridients' => ['1','2','3']];
-
-//        dd($configuration);
-
-//        return view('content.form_pizza', $configuration);
-
-	}
 }
+

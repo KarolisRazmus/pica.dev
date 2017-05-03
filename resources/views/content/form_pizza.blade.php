@@ -36,16 +36,4 @@
     {!! Form::close() !!}
 
 
-    {{--{!! Form::open(['url' => route('create.cheese')]) !!}--}}
-
-    {{--{!! Form::label('addcheese', ' Add your favorite cheese to the list!  Name') !!}--}}
-    {{--{!! Form::text('addcheese')!!}--}}
-
-    {{--{!! Form::label('calories', 'Calories') !!}--}}
-    {{--{!! Form::text('calories')!!}--}}
-
-    {{--{!! Form::submit('Add Cheese!') !!}--}}
-    {{--{!! Form::close() !!}--}}
-
-
 @endsection
