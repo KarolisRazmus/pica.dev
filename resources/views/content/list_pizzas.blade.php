@@ -9,7 +9,7 @@
     <div class="container">
         <table class="table-bordered">
             <tr>
-                <th class="col-md-2">Pizzas title </th>
+                <th class="col-md-2">Client phone number</th>
                 <th class="col-md-2">Ingredients</th>
                 <th class="col-md-2">Calories</th>
             </tr>
