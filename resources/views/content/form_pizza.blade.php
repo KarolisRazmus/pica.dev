@@ -4,9 +4,14 @@
 
 @section('content')
 
-    @if(isset($data))
+    @if(isset($error))
+        <h4 style="color:red">{{ $error['message'] }}</h4>
+    @endif
+
+    {{--@if(isset($data))
         @if((sizeOf($data['ingridients'])) > 3)
-            <h4 style="color:red">Pasirinkote {{sizeOf($data['ingridients'])}} ingredientus, prasome pasirinkite ne daugiau nei tris!</h4>
+            <h4 style="color:red">Pasirinkote {{sizeOf($data['ingridients'])}} ingredientus, prasome pasirinkite ne
+                daugiau nei tris!</h4>
         @elseif(($data['ingridients']) === null)
             <h4 style="color:red">Pasirinkite bent viena ingredienta!</h4>
         @endif
@@ -14,18 +19,16 @@
 
 
 
-    @if(isset($data['name']))
-        @if($name == null)
-            <h4 style="color:red">EEEE.. pamirsai telefona!</h4>
-        @elseif(($name != null))
-            <h4 style="color:red">Pica sukurta, susisieksime su Jumis tel: {{$name}}!</h4>
-        @endif
+    @if(!isset($data['name']))
+        <h4 style="color:red">EEEE.. pamirsai telefona!</h4>
+    @elseif(($name != null))
+        <h4 style="color:red">Pica sukurta, susisieksime su Jumis tel: {{$name}}!</h4>
     @endif
 
 
-
+--}}
     {{--@elseif($data['name'])--}}
-        {{--<h4 style="color:green">{{$data['name']}} sukurta sėkmingai!</h4>--}}
+    {{--<h4 style="color:green">{{$data['name']}} sukurta sėkmingai!</h4>--}}
 
 
 
@@ -45,10 +48,10 @@
 
     @foreach($ingridients as $key => $ingridient)<br/>
 
-                {{Form::checkbox('ingridients[]', $key)}}
-                {{Form::label($ingridient, $ingridient)}}
+    {{Form::checkbox('ingridients[]', $key)}}
+    {{Form::label($ingridient, $ingridient)}}
 
-        @endforeach
+    @endforeach
     <br/><br/>
 
     {!! Form::submit('Add Pizza!') !!}

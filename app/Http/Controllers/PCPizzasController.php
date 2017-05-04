@@ -54,37 +54,21 @@ class PCPizzasController extends Controller {
 
         if(!isset($data['ingridients']))
         {
-            $configuration['data']['ingridients']= null;
+            $configuration['error'] = ['message' => trans('no_ingredients')];
+
             return view('content.form_pizza', $configuration);
         }
 
         if(sizeOf($data['ingridients']) > 3)
         {
-            $configuration['data']= $data;
+            $configuration['error'] = ['message' => trans('more_than3_ingredients')];
+
             return view('content.form_pizza', $configuration);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         if(!isset($data['name']))
         {
-            $configuration['name']= null;
-
-            return $configuration;
+            $configuration['error'] = ['message' => trans('no_name')];
 
             return view('content.form_pizza', $configuration);
         }
