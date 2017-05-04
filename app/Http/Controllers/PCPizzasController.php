@@ -17,9 +17,9 @@ class PCPizzasController extends Controller {
 	 */
 	public function index()
 	{
-//        dd($configuration['all_pizzas'] = PCPizzas::with(['ingridientsConnections'])->with(['ground'])->with(['cheese'])->get()->toArray());
-
         $configuration['all_pizzas'] = PCPizzas::with(['ingridientsConnections'])->with(['ground'])->with(['cheese'])->get()->toArray();
+
+//        dd($configuration);
 
          return view('content.list_pizzas', $configuration);
 	}
@@ -30,13 +30,10 @@ class PCPizzasController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function form()
+	public function create()
 	{
 
-		$configuration['grounds']=PCGrounds::all()->pluck('name', 'id')->toArray();
-		$configuration['cheeses']=PCCheeses::all()->pluck('name', 'id')->toArray();
-		$configuration['ingridients']=PCIngridients::all()->pluck('name', 'id')->toArray();
-		$configuration['data']=['ingridients' => ['1','2','3']];
+	    $configuration = $this->getFormData();
 
 //        dd($configuration);
 
@@ -49,33 +46,87 @@ class PCPizzasController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function addPizza()
+	public function store()
 	{
+        $configuration = $this->getFormData();
+
         $data = request()->all();
-        
-        if (isset($data['name']))
+
+        if(!isset($data['ingridients']))
         {
-            $configuration['name']=$data['name'];
-        }
-
-//        dd($data);
-
-        $configuration['grounds']=PCGrounds::all()->pluck('name', 'id')->toArray();
-        $configuration['cheeses']=PCCheeses::all()->pluck('name', 'id')->toArray();
-        $configuration['ingridients']=PCIngridients::all()->pluck('name', 'id')->toArray();
-
-        if (!isset($data['name']))
-        {
-            $configuration['noname']=$data['name'];
-            return view('content.form_pizza',  $configuration);
+            $configuration['data']['ingridients']= null;
+            return view('content.form_pizza', $configuration);
         }
 
         if(sizeOf($data['ingridients']) > 3)
         {
             $configuration['data']= $data;
+            return view('content.form_pizza', $configuration);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        if(!isset($data['name']))
+        {
+            $configuration['name']= null;
+
+            return $configuration;
 
             return view('content.form_pizza', $configuration);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        $data['phone']= '8 618 00001';
+
+//        if (isset($data['phone']))
+//        {
+//            $configuration['phone']=$data['phone'];
+//        }
+
+
+//
+//        dd($data);
+//        dd($configuration);
+
+//        $data['name']= null;
+
+//        if ($data['name'] === null)
+//        {
+//            $configuration['name']=$data['name'];
+//            return view('content.form_pizza',  $configuration);
+//        }
+
+
+
 
 
 
@@ -95,6 +146,9 @@ class PCPizzasController extends Controller {
 
 
 
+
+
+
         $record = PCPizzas::create ([
             'name' => $data['name'],
             'grounds_id' => $data['ground'],
@@ -104,9 +158,16 @@ class PCPizzasController extends Controller {
 
         $record->connection()->sync($data['ingridients']);
 
-        $configuration['data']=['ingridients' => ['1','2','3']];
-
         return view('content.form_pizza',  $configuration);
+	}
+
+    public function getFormData()
+    {
+        $configuration['grounds']=PCGrounds::all()->pluck('name', 'id')->toArray();
+        $configuration['cheeses']=PCCheeses::all()->pluck('name', 'id')->toArray();
+        $configuration['ingridients']=PCIngridients::all()->pluck('name', 'id')->toArray();
+
+        return $configuration;
 	}
 }
 

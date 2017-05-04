@@ -4,17 +4,29 @@
 
 @section('content')
 
-    @if(sizeOf($data['ingridients']) > 3)
-        <h4 style="color:red">Pasirinkite ne daugiau nei tris ingredientus!</h4>
+    @if(isset($data))
+        @if((sizeOf($data['ingridients'])) > 3)
+            <h4 style="color:red">Pasirinkote {{sizeOf($data['ingridients'])}} ingredientus, prasome pasirinkite ne daugiau nei tris!</h4>
+        @elseif(($data['ingridients']) === null)
+            <h4 style="color:red">Pasirinkite bent viena ingredienta!</h4>
+        @endif
     @endif
 
-    @if(isset($name))
-        <h4 style="color:green">{{$name}} sukurta sėkmingai!</h4>
+
+
+    @if(isset($data['name']))
+        @if($name == null)
+            <h4 style="color:red">EEEE.. pamirsai telefona!</h4>
+        @elseif(($name != null))
+            <h4 style="color:red">Pica sukurta, susisieksime su Jumis tel: {{$name}}!</h4>
+        @endif
     @endif
 
-    {{--@if(!$name === null)--}}
-        {{--<h4 style="color:red">EEEE.. pamirsai telefona!</h4>--}}
-    {{--@endif--}}
+
+
+    {{--@elseif($data['name'])--}}
+        {{--<h4 style="color:green">{{$data['name']}} sukurta sėkmingai!</h4>--}}
+
 
 
 
