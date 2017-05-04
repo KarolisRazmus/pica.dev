@@ -38,3 +38,4 @@ Route::group(['prefix' => 'ingridients'], function (){
         'uses' => 'PCIngridientsController@index',
     ]);
 });
+

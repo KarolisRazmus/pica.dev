@@ -15,7 +15,7 @@ class PCPizzas extends PCCoreModel
         return $this->belongsToMany(PCIngridients::class, 'pc_pizzas_ingridients_connections', 'pizzas_id', 'ingridients_id');
     }
 
-    public function ingridientsConnections (  )
+    public function pizzasConnections (  )
     {
         return $this->hasMany(PCPizzasIngridientsConnections::class, 'pizzas_id', 'id')
             ->with(['ingridient']);

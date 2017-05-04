@@ -17,7 +17,7 @@ class PCPizzasController extends Controller {
 	 */
 	public function index()
 	{
-        $configuration['all_pizzas'] = PCPizzas::with(['ingridientsConnections'])->with(['ground'])->with(['cheese'])->get()->toArray();
+        $configuration['all_pizzas'] = PCPizzas::with(['pizzasConnections'])->with(['ground'])->with(['cheese'])->get()->toArray();
 
 //        dd($configuration);
 

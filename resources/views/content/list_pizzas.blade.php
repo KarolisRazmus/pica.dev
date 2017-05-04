@@ -23,7 +23,7 @@
                             <li>{{$pizza['ground']['name']}}</li>
                             <li>{{$pizza['cheese']['name']}}</li>
 
-                            @foreach($pizza['ingridients_connections'] as $key => $connection)
+                            @foreach($pizza['pizzas_connections'] as $key => $connection)
 
                                 <li>{{($connection['ingridient']['name'])}}</li>
 
