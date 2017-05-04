@@ -8,6 +8,10 @@
         <h4 style="color:red">{{ $error['message'] }}</h4>
     @endif
 
+    @if(isset($comment))
+        <h4 style="color:red">{{ $comment['message'] }}</h4>
+    @endif
+
     {{--@if(isset($data))
         @if((sizeOf($data['ingridients'])) > 3)
             <h4 style="color:red">Pasirinkote {{sizeOf($data['ingridients'])}} ingredientus, prasome pasirinkite ne

@@ -52,6 +52,8 @@ class PCPizzasController extends Controller {
 
         $data = request()->all();
 
+
+
         if(!isset($data['ingridients']))
         {
             $configuration['error'] = ['message' => trans('no_ingredients')];
@@ -75,46 +77,6 @@ class PCPizzasController extends Controller {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        $data['phone']= '8 618 00001';
-
-//        if (isset($data['phone']))
-//        {
-//            $configuration['phone']=$data['phone'];
-//        }
-
-
-//
-//        dd($data);
-//        dd($configuration);
-
-//        $data['name']= null;
-
-//        if ($data['name'] === null)
-//        {
-//            $configuration['name']=$data['name'];
-//            return view('content.form_pizza',  $configuration);
-//        }
-
-
-
-
-
-
-
         $ground_calories = array_sum(DB::table('pc_grounds')->where('id', '=', $data['ground'])->select('calories')->get()->pluck('calories')->toArray());
 
         $cheeses_calories = array_sum(DB::table('pc_cheeses')->where('id', '=', $data['cheese'])->select('calories')->get()->pluck('calories')->toArray());
@@ -130,9 +92,6 @@ class PCPizzasController extends Controller {
 
 
 
-
-
-
         $record = PCPizzas::create ([
             'name' => $data['name'],
             'grounds_id' => $data['ground'],
@@ -140,7 +99,13 @@ class PCPizzasController extends Controller {
             'calories' => $pizzas_calories,
         ]);
 
+
+
         $record->connection()->sync($data['ingridients']);
+
+
+
+        $configuration['comment'] = ['message' => trans('confirmation_message')];
 
         return view('content.form_pizza',  $configuration);
 	}
