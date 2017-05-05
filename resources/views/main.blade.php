@@ -6,6 +6,7 @@
 @include('css')
 {{--@include('fonts')--}}
 {{--@include('meta')--}}
+</head>
 <body>
 {{--@include('header')--}}
 

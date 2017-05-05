@@ -36,6 +36,11 @@ Route::group(['prefix' => 'pizza'], function (){
             'uses' => 'PCPizzasController@show',
         ]);
 
+        Route::post('/', [
+            'as' => 'delete.pizza',
+            'uses' => 'PCPizzasController@destroy'
+        ]);
+
         Route::get('/edit/', [
             'uses' => 'PCPizzasController@edit',
         ]);

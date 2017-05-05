@@ -127,7 +127,7 @@ class PCPizzasController extends Controller {
 
         $configuration['pizza'] = PCPizzas::with(['pizzasConnections'])->with(['ground'])->with(['cheese'])->find($id)->toArray();
 
-        //($configuration);
+        //dd($configuration);
 
         return view('content.one_pizza', $configuration);
     }
@@ -145,10 +145,15 @@ class PCPizzasController extends Controller {
 
         $configuration = $this->getFormData();
 
-        $configuration['pizza'] = PCPizzas::with(['pizzasConnections'])->with(['ground'])->with(['cheese'])->find($id)->toArray();
+        $configuration['pizza'] = PCPizzas::with(['pizzasConnections'])->with(['ground'])->with(['cheese'])->find($id);
 
-        return view('content.form_pizza', $configuration);
+        $configuration['pizza_ingridients']= $configuration['pizza']->pizzasConnections->pluck('ingridients_id')->toArray();
 
+        $configuration['pizza'] = $configuration['pizza']->toArray();
+
+        //dd($configuration);
+
+        return view('content.form_pizza_edit', $configuration);
     }
 
     /**
@@ -160,7 +165,34 @@ class PCPizzasController extends Controller {
      */
     public function update($id)
     {
-        //update'inam pica
+        //dd($id);
+
+        $data = request()->all();
+
+        //dd($data);
+
+        $record = PCPizzas::create ([
+            'name' => $data['name'],
+            'grounds_id' => $data['ground'],
+            'cheeses_id' => $data['cheese'],
+            'calories' => 350,
+        ]);
+//
+//        $record->connection()->sync($data['ingridients']);
+
+
+
+//
+//       $this->update()
+//
+//        array_get()
+    }
+
+    public function destroy($id)
+    {
+
+
+        //
     }
 }
 
