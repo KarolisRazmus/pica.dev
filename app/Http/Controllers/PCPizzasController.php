@@ -118,5 +118,49 @@ class PCPizzasController extends Controller {
 
         return $configuration;
 	}
+
+    public function show($id)
+    {
+        //parodom pica
+
+        //return $id;
+
+        $configuration['pizza'] = PCPizzas::with(['pizzasConnections'])->with(['ground'])->with(['cheese'])->find($id)->toArray();
+
+        //($configuration);
+
+        return view('content.one_pizza', $configuration);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * GET /pcgrounds/{id}/edit
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        //dd($id);
+
+        $configuration = $this->getFormData();
+
+        $configuration['pizza'] = PCPizzas::with(['pizzasConnections'])->with(['ground'])->with(['cheese'])->find($id)->toArray();
+
+        return view('content.form_pizza', $configuration);
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * PUT /pcgrounds/{id}
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        //update'inam pica
+    }
 }
 

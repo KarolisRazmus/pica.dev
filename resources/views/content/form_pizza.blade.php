@@ -4,6 +4,8 @@
 
 @section('content')
 
+    <div class="container">
+
     @if(isset($error))
         <h4 style="color:red">{{ $error['message'] }}</h4>
     @endif
@@ -37,5 +39,6 @@
 
     {!! Form::close() !!}
 
+    </div>
 
 @endsection

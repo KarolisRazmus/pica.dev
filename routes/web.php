@@ -30,6 +30,23 @@ Route::group(['prefix' => 'pizza'], function (){
         'uses' => 'PCPizzasController@store'
     ]);
 
+    Route::group(['prefix' => '{id}'], function (){
+
+        Route::get('/', [
+            'uses' => 'PCPizzasController@show',
+        ]);
+
+        Route::get('/edit/', [
+            'uses' => 'PCPizzasController@edit',
+        ]);
+
+        Route::post('/update/', [
+            'as' => 'update.pizza',
+            'uses' => 'PCPizzasController@update'
+        ]);
+
+    });
+
 });
 
 Route::group(['prefix' => 'ingridients'], function (){

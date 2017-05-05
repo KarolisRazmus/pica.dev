@@ -15,12 +15,25 @@ class PCIngridientsController extends Controller {
     {
         $configuration['all_ingridients'] = PCIngridients::with(['ingridientsConnections'])->get()->toArray();
 
+
+
+
         foreach ($configuration['$all_ingridients'] as $ingridient)
 
+             $name = $ingridient['name'];
+            $connections_sum = sizeof($ingridient['ingridients_connections']);
 
-             $ingridient['name']
-                    sizeof($ingridient['ingridients_connections'])
+             array_push($configuration['popularity'],$name => $connections_sum )
 
+
+
+             $stack = array("orange", "banana");
+            array_push($stack, "apple", "raspberry");
+            print_r($stack);
+
+
+
+             $configuration['error'] = ['message' => trans('no_ingredients')];
 
 
                         order_by('created_at', 'asc')
